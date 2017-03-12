@@ -16,6 +16,7 @@ export var searchTextReducer =(state='',action)=>{
 export var toggleShowCompletedReucer =(state = false, action)=>{
   switch (action.type) {
     case 'TOGGLE_SHOW_COMPLETED':
+      
       return !state;
       break;
     default:
@@ -47,6 +48,8 @@ export var todosReducer = (state=[],action)=>{
               completed: nextCompleted,
               completedAt: nextCompleted ? moment().unix() : undefined
             };
+          }else {
+            return todo;
           }
         });
     default:

@@ -5,20 +5,26 @@ var expect = require('expect');
 var TestUtils = require('react-addons-test-utils');
 
 
-var AddTodo = require('AddTodo');
+var {AddTodo} = require('AddTodo');
+// import {AddTodo} from 'AddTodo';
 
 describe('AddTodo',()=>{
   it('should exist',()=>{
       expect(AddTodo).toExist();
   });
 
-  it('should call onAddTodo with valid prop data ',()=>{
+  it('should dispatch ADD_TODO with valid prop data ',()=>{
+
     var spy = expect.createSpy();
-    var addTodo = TestUtils.renderIntoDocument(<AddTodo onAddTodo={spy}/>);
+    var addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
     var $el = $(ReactDOM.findDOMNode(addTodo));
 
-    addTodo.refs.todoItem.value = 'watching soccer';
+    addTodo.refs.todoItem.value = 'send email';
     TestUtils.Simulate.submit($el.find('form')[0]);
-    expect(spy).toHaveBeenCalledWith('watching soccer');
+
+    expect(spy).toHaveBeenCalledWith({
+      type: 'ADD_TODO',
+      text: 'send email'
+    });
   });
 })
