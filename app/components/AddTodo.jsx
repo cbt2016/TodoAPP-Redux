@@ -4,9 +4,7 @@ var actions = require('actions');
 
 
 export var AddTodo = React.createClass({
-  propTypes: {
-    onAddTodo: React.PropTypes.func.isRequired
-  },
+  
   onSubmitForm: function(e){
     e.preventDefault();
     var todoItem = this.refs.todoItem.value;
